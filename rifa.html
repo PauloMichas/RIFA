@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        table {
+            width: 500px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .selected {
+            background-color: red;
+            color: white;
+        }
+        .occupied {
+            background-color: red;
+            color: white;
+            cursor: not-allowed;
+        }
+        .available {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="number"], input[type="text"], button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rifa Online</h1>
+    <p>Escolha um número e insira seu nome:</p>
+    <input type="number" id="number-input" min="1" max="500" placeholder="Número">
+    <input type="text" id="name-input" placeholder="Seu Nome">
+    <button onclick="participate()">Participar</button>
+    <div id="table-container"></div>
+
+    <script>
+        // Verifica se há números de participantes salvos no armazenamento local ao carregar a página
+        var participants = JSON.parse(localStorage.getItem('participants')) || {};
+
+        function participate() {
+            var numberInput = document.getElementById("number-input");
+            var nameInput = document.getElementById("name-input");
+
+            var number = numberInput.value;
+            var name = nameInput.value;
+
+            if (participants[number]) {
+                alert("O número " + number + " já foi escolhido por outro participante. Por favor, escolha outro número.");
+            } else {
+                participants[number] = name;
+                localStorage.setItem('participants', JSON.stringify(participants));
+                alert("Seu ponto foi marcado na rifa!");
+            }
+
+            numberInput.value = "";
+            nameInput.value = "";
+
+            updateNumbersTable();
+        }
+
+        function updateNumbersTable() {
+            var numbersTable = "<table><tbody>";
+            var count = 1;
+            for (var i = 0; i < 10; i++) { // 10 rows
+                numbersTable += "<tr>";
+                for (var j = 0; j < 50; j++) { // 50 columns
+                    var cellClass = participants[count] ? "occupied" : "available";
+                    numbersTable += "<td class='" + cellClass + "' onclick='showParticipantName(" + count + ")'>" + count + "</td>";
+                    count++;
+                }
+                numbersTable += "</tr>";
+            }
+            numbersTable += "</tbody></table>";
+            document.getElementById("table-container").innerHTML = numbersTable;
+        }
+
+        function showParticipantName(number) {
+            var participantName = participants[number];
+            if (participantName) {
+                alert("Nome do participante: " + participantName);
+            }
+        }
+
+        window.onload = function() {
+            updateNumbersTable();
+        };
+    </script>
+</body>
+</html>
