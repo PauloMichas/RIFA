@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SORTEADOR</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
  
@@ -46,7 +47,7 @@
                 cursor: not-allowed;
             }
             .available {
-                background-color: green;
+                background-color: rgb(0, 156, 156);
                 color: white;
                 cursor: pointer;
             }
@@ -58,8 +59,8 @@
     </head>
     <body>
         <h1>Rifa Online</h1>
-        <p>Escolha um número e insira seu nome:</p>
-        <input type="number" id="number-input" min="1" max="500" placeholder="Número">
+        <p>Escolha um número e insira seu nome e endreço :</p>
+        <input type="number" id="number-input" min="1" max="100" placeholder="Número">
         <input type="text" id="name-input" placeholder="Seu Nome">
         <button onclick="participate()">Participar</button>
         <div id="table-container"></div>
@@ -94,7 +95,7 @@
                 var count = 1;
                 for (var i = 0; i < 10; i++) { // 10 rows
                     numbersTable += "<tr>";
-                    for (var j = 0; j < 50; j++) { // 50 columns
+                    for (var j = 0; j < 10; j++) { // 50 columns
                         var cellClass = participants[count] ? "occupied" : "available";
                         numbersTable += "<td class='" + cellClass + "' onclick='showParticipantName(" + count + ")'>" + count + "</td>";
                         count++;
@@ -116,12 +117,8 @@
                 updateNumbersTable();
             };
         </script>
-    </body>
-    </html>
+ 
     
- 
- 
- 
     <h1>Sorteador</h1>
   
  <div class="card">
@@ -161,5 +158,3 @@
   
 
   
-</body>
-</html>
