@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
+    <script src="script.js"></script>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -65,94 +65,37 @@
         <button onclick="participate()">Participar</button>
         <div id="table-container"></div>
     
-        <script>
-            // Verifica se há números de participantes salvos no armazenamento local ao carregar a página
-            var participants = JSON.parse(localStorage.getItem('participants')) || {};
-    
-            function participate() {
-                var numberInput = document.getElementById("number-input");
-                var nameInput = document.getElementById("name-input");
-    
-                var number = numberInput.value;
-                var name = nameInput.value;
-    
-                if (participants[number]) {
-                    alert("O número " + number + " já foi escolhido por outro participante. Por favor, escolha outro número.");
-                } else {
-                    participants[number] = name;
-                    localStorage.setItem('participants', JSON.stringify(participants));
-                    alert("Seu ponto foi marcado na rifa!");
-                }
-    
-                numberInput.value = "";
-                nameInput.value = "";
-    
-                updateNumbersTable();
-            }
-    
-            function updateNumbersTable() {
-                var numbersTable = "<table><tbody>";
-                var count = 1;
-                for (var i = 0; i < 10; i++) { // 10 rows
-                    numbersTable += "<tr>";
-                    for (var j = 0; j < 10; j++) { // 50 columns
-                        var cellClass = participants[count] ? "occupied" : "available";
-                        numbersTable += "<td class='" + cellClass + "' onclick='showParticipantName(" + count + ")'>" + count + "</td>";
-                        count++;
-                    }
-                    numbersTable += "</tr>";
-                }
-                numbersTable += "</tbody></table>";
-                document.getElementById("table-container").innerHTML = numbersTable;
-            }
-    
-            function showParticipantName(number) {
-                var participantName = participants[number];
-                if (participantName) {
-                    alert("Nome do participante: " + participantName);
-                }
-            }
-    
-            window.onload = function() {
-                updateNumbersTable();
-            };
-        </script>
+
  
     
-    <h1>Sorteador</h1>
+    <h1>Sorteador</h1> 
   
  <div class="card">
     <div class=" fields">
       <div class="input-group">
         <label>Total De Resultados</label> <br> 
-        <input type="number" value="1">
+        <input type="number" value="1" id = "totalResultadosInput">
       </div>
       <div class="input-group">
           <label>Menor valor</label> <br>
-          <input type="number" value="1">
+          <input type="number" value="1" id = "menorValorInput">
         </div>
         <div class="input-group">
           <label>Maior Valor</label> <br> 
-          <input type="number" value="500">
+          <input type="number" value="100" id = "maiorValorInput">
         </div>
-        <button>Sorteador</button>
+        <button onclick="sortear()">Sorteador</button>
       </div>
    
     <div class="results">
       <h2>Resultado</h2>
     <div class="results-values">
-      <div class="result-value">12</div>
-      <div class="result-value">12</div>
-      <div class="result-value">12</div>
+    <!-- <div class="result-value">12</div>  -->
+ 
     </div>
   
   </div>
-  
-  
-  
   </div>
-  
- 
   </body>
   </html>
   
