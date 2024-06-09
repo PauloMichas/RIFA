@@ -1,0 +1,68 @@
+body { 
+    display: flex; 
+    flex-direction:  column;
+    align-items: center;
+    justify-content: center;
+ 
+    background-color:#396c5f;
+    height: 180vh;
+    margin:0;
+
+}
+
+h1 {
+    color:white; 
+}
+
+.card {
+
+ background-color: rgb(162, 201, 233)    ;
+ padding: 16px;
+min-width: 380px;
+border-radius: 24px;
+
+}
+
+.card .intput-group {
+    margin-top: 8px;
+}
+
+
+.card button{
+
+background-color: rgb(55, 196, 55);
+border: cadetblue;
+color: white;
+padding: 16px;
+width: 200px;
+font-size: 16px;
+}
+
+.results-values {
+    display: flex;
+justify-content: center;
+ flex-wrap: wrap;
+ max-width: 300px;
+}
+
+.results-values .result-value {
+background-color: #0f9e8f;
+color:white;
+width: 48px;
+height: 48px;
+margin: 8px;
+border-radius: 50px;
+text-align: center;
+line-height: 40px;
+ font-size: 24px;
+ margin-left: px;
+ margin-bottom: 10px;
+}
+
+p
+{
+font-size: 24px;
+color: aliceblue;
+}
+
+
