@@ -43,7 +43,7 @@ elementoHTMLResultValues.append(elementoHTMLDoResultado)
 
 }
 
-await wait(10)
+await wait(80)
 
 }
 }
@@ -51,7 +51,7 @@ await wait(10)
 function wait(tempo){
 return new Promise((resolve) => {
 
- setTimeout(() => resolve(10), tempo);
+ setTimeout(() => resolve(20), tempo);
 
 })
 
