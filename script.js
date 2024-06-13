@@ -51,7 +51,7 @@ await wait(10)
 function wait(tempo){
 return new Promise((resolve) => {
 
- setTimeout(() => resolve(1), tempo);
+ setTimeout(() => resolve(10), tempo);
 
 })
 
